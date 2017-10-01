@@ -4,7 +4,7 @@ import w from 'winston';
 import { Unit } from './unit';
 import { Battle } from './battle';
 
-w.level = 'debug';
+// w.level = 'debug';
 
 const heroes = [
   new Unit({name:'eegor', mod:3, proef:2, hp:27, ac:16, init:3, skills:[
@@ -26,6 +26,7 @@ const enemies = [
 ];
 
 let victories = [0, 0];
+w.profile('battle simulation');
 for (let i = 0; i < 1000; i++) {
   const battle = new Battle(heroes, enemies);
   battle.run();
@@ -34,4 +35,5 @@ for (let i = 0; i < 1000; i++) {
   victories[0] += results[0];
   victories[1] += results[1];
 }
+w.profile('battle simulation');
 w.info(victories);
